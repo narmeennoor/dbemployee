@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <title>employee data</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+<!-- Semantic UI theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+<!-- Bootstrap theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+  
+    
+</head>
+<body>
+
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    add
+  </button>
+  <button onClick="window.location.href=window.location.href" class="btn btn-secondary">Refresh Page</button>
+  <input id="search" type="text"   placeholder="Search for name " autocomplete="off">
+<br>
+  
+
+
+
+
+
+        <!-- table -->
+   
+    <table class="table table-bordered " id="table">
+        <thead>
+          <div class="message-show"></div>
+          <tr>
+            <th scope="col">Sl No.</th>
+            <th scope="col">Employee ID</th>
+            <th scope="col">Employee Name</th>
+            <th scope="col">Designation</th>
+            <th scope="col">Salary</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody class="employeedata" >
+         
+        </tbody>
+      </table>
+             
+             <!-- edit modal -->
+
+              <div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Data </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>  
+                    </div>
+                    <div class="modal-body">
+                            <div class="row">
+                                <input type="hidden" id="id_edit">
+        
+                                <div class="col-md-12">
+                                    <div class="error-message">
+        
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="">Employee Id</label>
+                                    <input type="text" id="edit_eid" class="form-control" readonly>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="">Employee Name</label>
+                                    <input type="text" id="edit_name" class="form-control">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="">Designation</label>
+                                    <input type="text" id="edit_desig" class="form-control">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="">Salary</label>
+                                    <input type="number" id="edit_sal" class="form-control">
+                                </div>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary " id="editsave">Update</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        
+
+        
+  
+
+        <!-- ADD Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+          <div class="modal-dialog">
+            <div class="modal-content addmodal">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">ADDING DETAILS INTO THE TABLE</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="login-box-msg"></div>
+                <form  id="addform" class="form"  name="myForm" autocomplete="off" >
+                    Enter the details below</br><br>
+                <label>Employee Id:</label>
+                <input type="text" placeholder="employeeid" id="Employeeid" name="id"><span id="status"></span></input>
+                <span id="usercheck"  
+                style="color: red;">
+                **id is required
+                </span><br><br>
+
+
+                <label>Employee Name:</label>
+                <input type="text" placeholder="employeename" id="Employeename" name="name" required></input>
+                <span id="namecheck"
+                style="color: red;">
+                **name is required
+                </span><br><br>
+                
+                <label>Designation:</label>
+                <input type="text" placeholder="designation" id="designation" name="designation" required></input>
+                <span id="descheck"
+                style="color: red;">
+                **field is required
+                </span><br><br>
+
+
+                <label>Salary:</label>
+                <input type="number" placeholder="salary" id="salary" name="salary" required></input>
+                <span id="salcheck"
+                style="color: red;">
+                **field is required
+                </span><br>
+                </form>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary"  id="btnsave"  >
+                    submit
+                  </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+      <script type="text/javascript">
+
+
+
+//checking if employee id already exists in db or not
+$("#Employeeid").change(function()
+  {
+  var Employeeid = $(this).val();
+ //alert(Employeeid);
+  $.ajax({
+					url:'check.php',
+					type:'POST',
+          
+          
+          data:{
+            'Employeeid':Employeeid,
+          },
+         success:function(response)
+         {
+        // alert($sql_empid_check);
+       // alert(response);
+          if(response==0)
+          {
+           
+          //  $('#status').append("it is available");
+          }
+          else {
+            $("#usercheck").hide();
+            $('#status').append("Employee id already exists");
+            
+              // $("#status").hide();
+            
+            
+         }
+        }
+});
+});
+
+
+
+
+//search function
+  $("#search").on("keyup", function() {
+  var value = $(this).val().toLowerCase();
+  $("#table tbody tr").filter(function() {
+    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+  });
+});
+
+// add modal data hide when closed
+        $('#exampleModal').on('hidden.bs.modal', function () {
+    $(this).find('form').trigger('reset');
+    $("#usercheck").hide();
+        $("#namecheck").hide();
+        $("#descheck").hide();
+        $("#salcheck").hide();
+        // $("#status").hide();
+   
+   
+})
+
+
+// add modal button function
+
+       $(document).ready(function(){
+        $("#usercheck").hide();
+        $("#namecheck").hide();
+        $("#descheck").hide();
+        $("#salcheck").hide();
+
+
+
+          $('#btnsave').click(function(){
+            
+
+            let id = $("#Employeeid").val();
+
+  if(id.length==""){
+    $("#usercheck").show();
+
+    return 
+  }
+  
+  let name = $("#Employeename").val();
+  
+  if(name.length==""){
+    $("#namecheck").show();
+    return 
+  }
+
+  let des = $("#designation").val();
+  
+  if(des.length==""){
+    $("#descheck").show();
+    return 
+  }
+
+
+  let sal = $("#salary").val();
+  
+  if(sal.length==""){
+    $("#salcheck").show();
+    return 
+  }
+ 
+  alertify.confirm("Are you sure you want these changes?.",
+  function(){
+    $.ajax({
+					url:'insert.php',
+					type:'POST',
+				    data:$("#addform").serialize(),
+            
+          
+          
+					success:function(data)
+					{
+					
+						if(data)
+						{
+             // alert();
+              
+							
+						}
+            else{
+              alert("cancelled");
+            }
+          },
+					
+				});
+
+    
+    alertify.success('data inserted successfully please refresh');
+  },
+  function(){
+
+    alertify.error('data insertion unsuccessful');
+  });
+           
+          });
+
+  // edit modal button function
+
+          $('#editsave').click(function(){
+            var Employeeid = $(this).val();
+            var Employeename = $(this).val();
+            var Designation = $(this).val();
+            var Salary = $(this).val();
+
+            alertify.confirm("Are you sure you want these changes?.",
+  function(){
+    $.ajax({
+         url:'update.php',
+         type:'POST',
+
+           data:{
+            'Employeeid': $('#edit_eid').val(),
+            'Employeename':$('#edit_name').val(),
+            'Designation':$('#edit_desig').val(),
+            'Salary':$('#edit_sal').val(),
+           },
+        
+         success:function(data)
+         {
+          
+           if(data==1)
+           {
+           // alertalarm();
+             //alert('data has been updated');
+    
+             
+           }
+           if(data==0){
+            alert('something went wrong');
+           }
+         },
+         
+       });
+    alertify.success('data updated successfully please refresh');
+  },
+  function(){
+    alertify.error('data updation unsuccessful');
+  });
+            
+          
+         });
+          
+       });
+
+      
+//table edit button function
+  
+$(document).ready(function () {
+            getdata();
+
+            $(document).on("click", ".edit_btn", function () {
+
+                var Employeeid = $(this).closest('tr').find('.Employeeid ').text();
+                var empname = $(this).closest('tr').find('.Employeename').text();
+                var desg = $(this).closest('tr').find('.des').text();
+                var salary = $(this).closest('tr').find('.sal').text();
+               // alert(Employeeid );
+               $('#edit_eid').val(Employeeid);
+                            $('#edit_name').val(empname);
+                            $('#edit_desig').val(desg);
+                            $('#edit_sal').val(salary);
+                            $('#EditModal').modal('show');
+
+               
+
+            });
+           
+        });
+
+
+
+
+      
+//table delete button function
+        $(document).on("click",".deletebtn",function(){
+       var Employeeid=$(this).closest('tr').find('.Employeeid').text();
+       let text = "you want to delete this employee from database";
+  if (confirm(text) == true) {
+    $.ajax({
+          type:"POST",
+         url:"delete.php",
+        
+          data:{
+            
+            'Employeeid':Employeeid,
+          },
+         success:function(response)
+          {
+           console.log(response);
+            if(response==1){
+
+              //alert("Data Deleted Successfully");
+              alertify.success('Data Deleted Successfully');
+              $('.employeedata').html('');
+                getdata();
+            }
+          }
+
+          });
+  } else {
+    alertify.error('Oops!!! you cancelled');
+  }
+     
+        
+        });
+
+
+//to fetch the data from database
+    function getdata()
+    {
+      $.ajax({
+        type:"POST",
+        url:"fetch.php",
+        dataType: 'JSON',
+        success: function(response){
+          
+          // $.each(response,function(key,value){
+          //    var i=0;
+            
+           //for (let i = 0; i < response.length; i++,function(key,value){
+              for(let i=0;i<response.length;i++){
+
+            //console.log(value['Employeeid']);
+            $('.employeedata').append('<tr>'+
+            '<th scope="row" class="slno">'+i+'</th>\
+            <td class="Employeeid ">'+response[i].Employeeid+'</td>\
+            <td class="Employeename " >'+response[i].Employeename+'</td>\
+            <td class="des ">'+response[i].Designation+'</td>\
+            <td class="sal ">'+response[i].Salary+'</td>\
+            <td><button type="button" class="btn btn-primary  edit_btn "style="background-color:green"  >\
+                edit </button></td>\
+              <td><button type="button" class="btn btn-danger deletebtn">\
+                delete </button></td>\
+              </tr>');
+             
+           // });
+         };
+        }
+
+     });
+    }
+
+
+
+  
+</script>
+
+
+        
+
+</body>
+</html>

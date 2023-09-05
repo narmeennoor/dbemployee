@@ -1,0 +1,25 @@
+#exampleModal{
+    color: rgb(0, 0, 0);   
+
+}
+
+
+      label{
+        width: 9rem;
+       
+      }
+
+input{
+      border: none;
+border-bottom-style: solid;
+outline: none;
+
+}
+#usercheck{
+  font-size: 15px;
+}
+
+.addmodal{
+  height: 30rem;
+  width:80rem;
+}
